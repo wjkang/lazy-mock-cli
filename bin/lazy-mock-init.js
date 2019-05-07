@@ -142,7 +142,7 @@ function generate(name, src, dest, done) {
         packageObj.author = ""
         packageObj.description = ""
         packageObj.ServerFullPath = path.join(dest)
-        packageObj.FrontendFullPath = path.join(dest, "front-page")
+        packageObj.FrontendFullPath = ""
         fse.writeJsonSync(path.join(serverTmp, 'package.json'), packageObj, { spaces: 2 })
         fse.copySync(serverTmp, dest)
         fse.copySync(path.join(src, 'templates'), path.join(dest, 'templates'))
