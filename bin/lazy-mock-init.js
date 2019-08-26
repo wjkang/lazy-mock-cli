@@ -151,15 +151,15 @@ function downloadTemplate(template) {
 
 function generate(name, src, dest, done) {
 	try {
-		fse.removeSync(path.join(serverTmp, 'templates'))
-		const packageObj = fse.readJsonSync(path.join(serverTmp, 'package.json'))
+		fse.removeSync(path.join(isSimpleServer ? simpleServerTmp : serverTmp, 'templates'))
+		const packageObj = fse.readJsonSync(path.join(isSimpleServer ? simpleServerTmp : serverTmp, 'package.json'))
 		packageObj.name = name
 		packageObj.author = ''
 		packageObj.description = ''
 		packageObj.ServerFullPath = path.join(dest)
 		packageObj.FrontendFullPath = ''
-		fse.writeJsonSync(path.join(serverTmp, 'package.json'), packageObj, { spaces: 2 })
-		fse.copySync(serverTmp, dest)
+		fse.writeJsonSync(path.join(isSimpleServer ? simpleServerTmp : serverTmp, 'package.json'), packageObj, { spaces: 2 })
+		fse.copySync(isSimpleServer ? simpleServerTmp : serverTmp, dest)
 		fse.copySync(path.join(src, 'templates'), path.join(dest, 'templates'))
 	} catch (err) {
 		done(err)
