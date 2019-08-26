@@ -125,7 +125,7 @@ function downloadServer(done) {
 		})
 	} else {
 		if (exists(simpleServerTmp)) rm(simpleServerTmp)
-		download('wjkang/lazy-mock', simpleServerTmp, { clone }, err => {
+		download('wjkang/lazy-mock#simple', simpleServerTmp, { clone }, err => {
 			spinner.stop()
 			if (err) logger.fatal('Failed to download server ' + template + ': ' + err.message.trim())
 			done()
